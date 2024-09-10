@@ -5,6 +5,7 @@ steps:
       - chmod 777 ./your-script.sh
       - ./your-script.sh
     entrypoint: bash
+logsBucket: 'gs://cloud_b_logs/'
 timeout: 600s
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: GCS_ONLY
