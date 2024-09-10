@@ -1,0 +1,10 @@
+steps:
+  - name: ubuntu
+    args:
+      - '-c'
+      - chmod 777 ./your-script.sh
+      - ./your-script.sh
+    entrypoint: bash
+timeout: 600s
+options:
+  logging: CLOUD_LOGGING_ONLY
