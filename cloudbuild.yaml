@@ -10,4 +10,4 @@ timeout: 600s
 options:
   logging: 
       - GCS_ONLY
-      - CLOUD_LOGGING_ONLY
+    #  - CLOUD_LOGGING_ONLY
