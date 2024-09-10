@@ -1,10 +1,11 @@
 steps:
-  - name: ubuntu
-    args:
-      - '-c'
-      - chmod 777 ./your-script.sh
-      - ./your-script.sh
-    entrypoint: bash
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/$REG/nodejs-app:$VERSION-$BUILD_ID', './nodejs-app/']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/$REG/nodejs-app:$VERSION-$BUILD_ID']
+
+images:
+- 'gcr.io/$PROJECT_ID/$REG/nodejs-app:$VERSION-$BUILD_ID'
 logsBucket: 'gs://cloud_b_logs/'
 timeout: 600s
 options:
