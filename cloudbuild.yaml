@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$BUILD_ID', './nodejs-app/']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$BUILD_ID']
+
+images:
+- '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$BUILD_ID'
+
+logsBucket: 'gs://cloud_b_logs/'
+
+timeout: 600s
+
+options:
+  logging: GCS_ONLY
