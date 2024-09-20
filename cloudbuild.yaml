@@ -1,11 +1,13 @@
 steps:
   # Step 1: Build the Maven project and run tests
   - name: 'maven:3.6.3-jdk-11'
+    dir: 'hello-world-maven'
     entrypoint: 'mvn'
     args: ['clean', 'test']
 
   # Step 2: Package the application into a WAR file if tests pass
   - name: 'maven:3.6.3-jdk-11'
+    dir: 'hello-world-maven'
     entrypoint: 'mvn'
     args: ['package']
   
