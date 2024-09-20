@@ -20,7 +20,7 @@ steps:
   # Step 5: Deploy the Docker image to Google Cloud Run (or GKE if preferred)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    args: ['run', 'deploy', 'my-webapp', '--image', ''${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA', '--platform', 'managed', '--region', 'asia-south1', '--allow-unauthenticated']
+    args: ['run', 'deploy', 'my-webapp', '--image', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA', '--platform', 'managed', '--region', 'asia-south1', '--allow-unauthenticated']
 
 images:
 - '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA'
