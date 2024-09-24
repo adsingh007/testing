@@ -43,9 +43,9 @@ RUN mkdir -p /run/sshd && \
     echo "    X11Forwarding no" >> /etc/ssh/sshd_config
 
 RUN sed -i '/^session\s\+required\s\+pam_loginuid.so/c\session    optional     pam_loginuid.so' /etc/pam.d/sshd && \
-    sed -i '/^#Port 22/c\Port 2222' /etc/ssh/sshd_config
+    sed -i '/^#Port 22/c\Port 443' /etc/ssh/sshd_config
 # Expose the SSH port
-EXPOSE 2222
+EXPOSE 443
 
 # Run SSHD on container start
 CMD ["/usr/sbin/sshd", "-D", "-e"]
