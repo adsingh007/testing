@@ -1,4 +1,4 @@
- ---
+  steps:
   #Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA', '.']
