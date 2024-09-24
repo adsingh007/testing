@@ -1,28 +1,15 @@
-steps:
-  # Step 1: Build the Maven project and run tests
-  - name: 'maven:3.6.3-jdk-11'
-    dir: 'hello-world-maven'
-    entrypoint: 'mvn'
-    args: ['clean', 'test']
-
-  # Step 2: Package the application into a WAR file if tests pass
-  - name: 'maven:3.6.3-jdk-11'
-    dir: 'hello-world-maven'
-    entrypoint: 'mvn'
-    args: ['package']
-  
-  # Step 3: Build the Docker image
+ #Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA', 'hello-world-maven/.']
+    args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA', '.']
 
   # Step 4: Push the Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA']
     
   # Step 5: Deploy the Docker image to Google Cloud Run (or GKE if preferred)
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    args: ['run', 'deploy', 'my-webapp', '--image', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA', '--platform', 'managed', '--region', 'asia-south1', '--allow-unauthenticated']
+  #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  #  entrypoint: 'gcloud'
+  #  args: ['run', 'deploy', '${_APP_NAME}', '--image', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA', '--platform', 'managed', '--region', 'asia-south1', '--allow-unauthenticated']
 
 images:
 - '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA'
