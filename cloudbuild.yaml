@@ -15,7 +15,7 @@
 images:
 - '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/${_APP_NAME}:$BRANCH_NAME-$SHORT_SHA'
 
-logsBucket: 'gs://cloud_b_logs/'
+logsBucket: 'gs://cloud_b_logs-dgh-2/'
 
 timeout: 600s
 
