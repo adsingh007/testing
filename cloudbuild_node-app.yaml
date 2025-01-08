@@ -1,11 +1,11 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/nodejs-app:$BRANCH_NAME-$BUILD_ID', './nodejs-app/']
+  args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/nodejs-app:$BRANCH_NAME-$SHORT_SHA', './nodejs-app/']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/nodejs-app:$BRANCH_NAME-$BUILD_ID']
+  args: ['push', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/nodejs-app:$BRANCH_NAME-$SHORT_SHA']
 
 images:
-- '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/nodejs-app:$BRANCH_NAME-$BUILD_ID'
+- '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO_NAME}/nodejs-app:$BRANCH_NAME-$SHORT_SHA'
 
 logsBucket: 'gs://cloud_b_logs/'
 
